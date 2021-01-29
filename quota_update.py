@@ -27,7 +27,7 @@ rc = RestClient(cluster_address, port_number)
 rc.login(username, password)
 logging.info('Connection established with {}'.format(cluster_address))
 
-quota=list(rc.quota.get_all_quotas_with_status())[0]['quotas']
+quota=list(rc.quota.get_all_quotas_with_status(page_size=100000))[0]['quotas']
  
 for x in range(len(quota)):
     file_id = quota[x]['id']
