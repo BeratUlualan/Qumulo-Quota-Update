@@ -41,7 +41,7 @@ for x in range(len(file_tree)):
         rc.quota.create_quota(file_id,2000000000000)
 
 
-quota=list(rc.quota.get_all_quotas_with_status())[0]['quotas']
+quota=list(rc.quota.get_all_quotas_with_status(page_size=100000))[0]['quotas']
  
 for x in range(len(quota)):
     file_id = quota[x]['id']
