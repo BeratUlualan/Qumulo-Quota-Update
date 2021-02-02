@@ -27,12 +27,13 @@ rc = RestClient(cluster_address, port_number)
 rc.login(username, password)
 logging.info('Connection established with {}'.format(cluster_address))
 
-quota=list(rc.quota.get_all_quotas_with_status(page_size=100000))[0]['quotas']
+quota=list(rc.quota.get_all_quotas_with_status(page_size=1000))[0]['quotas']
+print(range(len(quota)))
  
 for x in range(len(quota)):
     file_id = quota[x]['id']
     capacity_usage = quota[x]['capacity_usage']
     new_quota=int(float(capacity_usage)*1.5)
     rc.quota.update_quota(file_id, new_quota)
-    file_path = rc.fs.resolve_paths([file_id])[0]['path']
-    logging.info('Quota values were updated from {} to {} for {}'.format(capacity_usage,new_quota,file_path))
+#    file_path = rc.fs.resolve_paths([file_id])[0]['path']
+#    logging.info('Quota values were updated from {} to {} for {}'.format(capacity_usage,new_quota,file_path))
